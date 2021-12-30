@@ -10,7 +10,7 @@ import com.example.coderswag.R
 import com.example.coderswag.databinding.ItemCategoryBinding
 import com.example.coderswag.model.Category
 
-class CategoryAdapter :
+class CategoryAdapter (val itemClick: (Category) -> Unit) :
     ListAdapter<Category, CategoryAdapter.Holder>(ItemCallBack()) {
     override fun onCreateViewHolder( //this function returns a holder
         parent: ViewGroup,
@@ -40,6 +40,7 @@ class CategoryAdapter :
             )
             binding.categoryimage.setImageResource(resourceId)
             binding.categoryname.text = item.title
+            binding.itemCategoryContainer.setOnClickListener { itemClick(item) }
         }
     }
 
